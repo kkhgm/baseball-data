@@ -17,7 +17,7 @@ end
 
 CSV.foreach("db/game_details.csv") do |row|
      game = row[0]
-     get = row[1]
+     get_score = row[1]
      lose = row[2]
      team_id = row[3]
      enemy = row[4]
