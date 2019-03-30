@@ -25,7 +25,7 @@ CSV.foreach("db/game_details.csv") do |row|
      doom_id = row[6]
      start_time = row[7]
 
-  Game.create(team_id:team_id, game:game,get:get, lose:lose, enemy:enemy, picher:picher, doom_id:doom_id, start_time:start_time )
+  Game.create(team_id:team_id, game:game,get_score:get_score, lose:lose, enemy:enemy, picher:picher, doom_id:doom_id, start_time:start_time )
 end
 
 CSV.foreach("db/dooms.csv") do |row|
