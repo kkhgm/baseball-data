@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: baseball-data_production
-  username: baseball-data
-  password: <%= ENV['BASEBALL-DATA_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
