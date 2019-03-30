@@ -17,11 +17,7 @@ class TeamController < ApplicationController
     @win_amount = @team_datas.where("game = 1").group(:enemy_id).sum(:game)
     @avg_score = @team_datas.where("game = 1").group(:enemy_id).average(:get_score)
     @enemy_names = @team_datas.group(:enemy_id)
-    set_team_data
 
-    # 各チームを選択し紐づく勝敗配列（game）を取得
-    #チームの勝敗を計算
-    @scores = @team_datas.map {|team| team.get_score - team.lose}
 
     # ドーム別勝敗を確認
     @doom_datas = @team_datas.where("game = 1").group(:doom_id).includes(:doom)
