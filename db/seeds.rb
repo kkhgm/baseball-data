@@ -5,3 +5,39 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+# cateforyの投入
+require 'csv'
+
+# CSV.foreach("db/games.csv") do |row|
+#      team_id = row[0]
+#      game = row[1]
+
+#   Game.create(team_id:team_id, game:game)
+# end
+
+
+CSV.foreach("db/teams.csv") do |row|
+     name = row[0]
+
+  Enemy.create(name:name)
+end
+
+# CSV.foreach("db/game_details.csv") do |row|
+#      game = row[0]
+#      get = row[1]
+#      lose = row[2]
+#      team_id = row[3]
+#      enemy = row[4]
+#      picher = row[5]
+#      doom_id = row[6]
+#      start_time = row[7]
+
+#   Game.create(team_id:team_id, game:game,get:get, lose:lose, enemy:enemy, picher:picher, doom_id:doom_id, start_time:start_time )
+# end
+
+# CSV.foreach("db/dooms.csv") do |row|
+#      name = row[0]
+#   Doom.create(name:name)
+# end

@@ -1,0 +1,17 @@
+@mixin chart_form{
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.rank_chart{
+  &_canvas{
+  @include chart_form;
+  }
+}
+
+.score_chart{
+  &_canvas{
+  @include chart_form;
+  }
+}
