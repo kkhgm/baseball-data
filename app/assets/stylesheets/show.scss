@@ -1,0 +1,28 @@
+@mixin chart_form{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.win_date{
+  &_chart{
+  @include chart_form;
+    float: left;
+  }
+  &_index{
+    float: left;
+    margin-top:200px;
+  }
+}
+
+.doom_date {
+  clear: both;
+  &_chart{
+    @include chart_form;
+    float: left;
+
+  }
+  &_index{
+    margin-top:200px;
+    padding-left: 20px;
+  }
+}
