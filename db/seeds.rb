@@ -12,7 +12,13 @@ require 'csv'
 CSV.foreach("db/teams.csv") do |row|
      name = row[0]
 
+  Team.create(name:name)
   Enemy.create(name:name)
+end
+
+CSV.foreach("db/dooms.csv") do |row|
+     name = row[0]
+  Doom.create(name:name)
 end
 
 CSV.foreach("db/game_details.csv") do |row|
@@ -20,15 +26,10 @@ CSV.foreach("db/game_details.csv") do |row|
      get_score = row[1]
      lose = row[2]
      team_id = row[3]
-     enemy = row[4]
+     enemy_id = row[4]
      picher = row[5]
      doom_id = row[6]
      start_time = row[7]
 
-  Game.create(team_id:team_id, game:game,get_score:get_score, lose:lose, enemy:enemy, picher:picher, doom_id:doom_id, start_time:start_time )
-end
-
-CSV.foreach("db/dooms.csv") do |row|
-     name = row[0]
-  Doom.create(name:name)
+  Game.create!(team_id:team_id, game:game,get_score:get_score, lose:lose, enemy_id:enemy_id, picher:picher, doom_id:doom_id, start_time:start_time )
 end
