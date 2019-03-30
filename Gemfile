@@ -67,3 +67,7 @@ gem 'sprockets', '3.7.2'
 gem 'mechanize'
 gem'lazy_high_charts'
 gem 'jquery-rails'
+
+group :production do
+  gem 'pg'
+end
