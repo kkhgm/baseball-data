@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+　<title>グラフ</title>
+</head>
+
+<body>
+  <div class="rank_chart">
+    <h1>勝利数（貯金）推移</h1>
+    <%- @teams.each do |team| %>
+      <%= link_to team.name, "/team/#{team.id}" %>:
+      <%= team.games.sum(:game) %>
+      <!-- <br> -->
+    <% end %>
+    <div class="rank_chart_canvas">
+      <canvas id="myLineChart" ></canvas>
+    </div>
+  </div>
+
+  <div class="score_chart">
+    <h1>取得、奪点数割合</h1>
+    <div class="score_chart_canvas">
+      <canvas id="mybarChart"></canvas>
+    </div>
+  </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+  <script>
+
+var ctx = document.getElementById("myLineChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
+  <%- @teams.each do |team| %>
+  data: {
+    labels: <%= @label %>,
+    datasets: [
+      {
+        label: '阪神',
+        data: <%= @tigers %>,
+        borderColor: "#FFFF00",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+      {
+        label: 'ヤクルト',
+        data: <%= @swallows %>,
+        borderColor: "#B6FF01",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+      {
+        label: '巨人',
+        data: <%= @giants %>,
+        borderColor: "#FFAD90",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+      {
+        label: '中日',
+        data: <%= @dragons %>,
+        borderColor: "#2C7CFF",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+      {
+        label: '横浜',
+        data: <%= @dena %>,
+        borderColor: "#BAD3FF",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+      {
+        label: '広島',
+        data: <%= @carps %>,
+        borderColor: "rgba(255,0,0,1)",
+        backgroundColor: "rgba(0,0,0,0)"
+      },
+    ],
+  },
+  <% end %>
+  options: {
+    title: {
+      display: true,
+      text: '2018年 125試合'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          suggestedMax: 30,
+          suggestedMin: -30,
+          stepSize: 10,
+          callback: function(value, index, values){
+            return  value
+          }
+        }
+      }]
+    },
+  }
+});
+
+var ctx = document.getElementById("mybarChart");
+var mybarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+   labels: ["Tigers", "Swallows", "Giants", "Dragons", "Dena", "Carps"],
+  datasets: [{
+      data: <%= @compare_get_amount %>,
+        backgroundColor: ["#FFFF00",
+                           "#B6FF01",
+                           "#FFAD90",
+                           "#2C7CFF",
+                           "#BAD3FF",
+                           "rgba(255,0,0,1)"]},
+      {data: <%= @compare_lose_amount %>,
+        backgroundColor: ["#FFFF00",
+                           "#B6FF01",
+                           "#FFAD90",
+                           "#2C7CFF",
+                           "#BAD3FF",
+                           "rgba(255,0,0,1)"]
+  }],
+  }
+});
+
+  </script>
+</body>
+
+</html>

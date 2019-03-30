@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 
-.win_date{
+.win_data{
   &_chart{
   @include chart_form;
     float: left;
@@ -14,7 +14,7 @@
   }
 }
 
-.doom_date {
+.doom_data {
   clear: both;
   &_chart{
     @include chart_form;
