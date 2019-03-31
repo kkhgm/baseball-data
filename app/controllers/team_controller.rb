@@ -16,7 +16,7 @@ class TeamController < ApplicationController
 
     @win_amount = @team_datas.where("game = 1").group(:enemy_id).sum(:game)
     @avg_score = @team_datas.where("game = 1").group(:enemy_id).average(:get_score)
-    @enemy_names = @team_datas.group(:enemy_id).order(nil)
+    @enemy_names = @team_datas.group(:enemy_id)
 
 
     # ドーム別勝敗を確認
