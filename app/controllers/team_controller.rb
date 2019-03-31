@@ -11,16 +11,16 @@ class TeamController < ApplicationController
   end
 
   def show
-    @team_datas = Team.find(params[:id]).games.includes(:doom).includes(:enemy)
+    team_datas = Team.find(params[:id])
+    @all_datas = team_datas.games.includes(:doom).includes(:enemy)
     @label = 125.times.map {|t| t +1}
 
-    @win_amount = @team_datas.where("game = 1").group(:enemy_id).sum(:game)
-    @avg_score = @team_datas.where("game = 1").group(:enemy_id).average(:get_score)
-    @enemy_names = @team_datas.unscoped.group(:enemy_id)
-
+    @win_amount = @all_datas.where("game = 1").group(:enemy_id).sum(:game)
+    @avg_score = @all_datas.where("game = 1").group(:enemy_id).average(:get_score)
+    @enemy_names = team_datas.games.group(:enemy_id)
 
     # ドーム別勝敗を確認
-    @doom_datas = @team_datas.where("game = 1").group(:doom_id).includes(:doom)
+    @doom_datas = @all_datas.where("game = 1").group(:doom_id).includes(:doom)
   end
 
   def set_team_data

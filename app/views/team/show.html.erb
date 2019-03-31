@@ -43,7 +43,7 @@
         data: {
             labels: <%= @enemy_names.map {|name| name.enemy.id} %>,
             datasets: [{
-                label: "<%= @team_datas.first.team.name %>",
+                label: "<%= @all_datas.first.team.name %>",
                 data: <%= @win_amount.map {|enemy| enemy[1]} %>,
                 backgroundColor: 'RGBA(225,95,150, 0.5)',
                 borderColor: 'RGBA(225,95,150, 1)',
@@ -84,7 +84,7 @@ var ctx = document.getElementById("mydoomChart");
       labels: <%= @doom_datas.map {|name| name.doom_id} %>,
       datasets: [
         {
-          label: '<%= @team_datas.first.team.name %>',
+          label: '<%= @all_datas.first.team.name %>',
           data: <%= @doom_datas.sum(:game).map {|win| win[1]} %>,
           borderColor: "RGBA(225,95,150, 0.5)",
           backgroundColor: "RGBA(225,95,150, 0.5)"
